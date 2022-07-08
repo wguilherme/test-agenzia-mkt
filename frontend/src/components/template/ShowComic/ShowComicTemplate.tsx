@@ -1,5 +1,5 @@
 import { FavoriteBorder } from "@mui/icons-material";
-import { Card, CardMedia, CardContent, Typography, CardActions, Button } from "@mui/material";
+import { Paper,Card, CardMedia, CardContent, Typography, CardActions, Button, Box } from "@mui/material";
 
 interface PropsInterface {
   comicData: {
@@ -17,28 +17,35 @@ export function ShowComicTemplate({comicData}: PropsInterface){
   const {id, title, thumbnail, description, updatedAt, price} = comicData
   
   return(
-    <Card sx={{mb:3}}>
+    <Paper sx={{p:0}} elevation={10}>
       <CardMedia 
         component="img"
-        height="194"
+        // height="194"
+        width="100%"
         image={thumbnail}
         alt={title}
       />   
 
       <CardContent >
-        <Typography variant="body2" color="text.secondary">
-          {`${description.slice(0, 100)}...` || "Descrição não disponível"}
+        <Typography variant="h6">
+          Saiba mais:
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          {`${description}` || "Descrição não disponível"}
         </Typography>
       </CardContent>
 
       <CardActions>
-        <Button fullWidth>Adicionar ao carrinho</Button>
-        <Button fullWidth>
+        <Box display="flex" flexDirection="column" gap={1} flex="1">
+
+        <Button fullWidth variant="contained">Adicionar ao carrinho</Button>
+        <Button fullWidth variant="outlined" sx={{display: 'flex', gap:1}}>
           <FavoriteBorder color="primary"/>
           Favoritar
           </Button>
         
+        </Box>
       </CardActions>
-    </Card>
+    </Paper>
   )
 }
