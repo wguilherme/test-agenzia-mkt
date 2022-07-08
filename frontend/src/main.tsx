@@ -42,8 +42,7 @@ root.render(
           </Provider>
         </UserProvider>
       </ThemeProvider>
-
-        <ReactQueryDevtools/>
+        {/* <ReactQueryDevtools/> */}
     </QueryClientProvider>
   </React.StrictMode>,
 )
