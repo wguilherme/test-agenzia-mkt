@@ -8,7 +8,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App';
-import { LoggedUserProvider } from './contexts/User';
+import { UserProvider } from '@/contexts';
 import { store } from './store';
 import './styles/global.scss';
 
@@ -29,11 +29,11 @@ const theme: any = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <LoggedUserProvider>
+      <UserProvider>
         <Provider store={store}>
           <App />
         </Provider>
-      </LoggedUserProvider>
+      </UserProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
