@@ -15,8 +15,8 @@ function App() {
           <Route path="*" element={<Navigate to="/comics" />} />
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/history" element={<HistoryPage />} />
+          <Route path="/comics/:comicId" element={<ShowComicsPage />} />
           <Route path="/comics" element={<ListComicsPage />} />
-          <Route path="/comics/:id" element={<ShowComicsPage />} />
           <Route path="/cart" element={<CartPage />} />
       </Route>
       </Routes>
