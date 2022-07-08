@@ -2,7 +2,7 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, Skeleton, Typog
 
 interface PropsInterface {
   title: string;
-  image: string;
+  thumbnail: string;
   description: string;
   price: number;
 }
@@ -24,26 +24,23 @@ export function ComicCardSkeleton(){
 
 export function ComicCardSkeletonList(){
   const list = [1,2,3,4,5,6,7,8,9,10]
-  return(<>{list.map((item:any)=>(<ComicCardSkeleton/>))}</>)
+  return(<>{list.map((item:any)=>(<ComicCardSkeleton key={item}/>))}</>)
 }
 
 
-export function ComicCard({title, image, description, price}: PropsInterface){
+export function ComicCard({title, thumbnail, description, price}: PropsInterface){
   return(
     <Card sx={{mb:3}}>
       <CardMedia 
         component="img"
         height="194"
-        image="https://images-na.ssl-images-amazon.com/images/I/91a97u0fSFL.jpg"
-        alt="Paella dish"
+        image={thumbnail}
+        alt={title}
       />   
 
-      <CardContent>
+      <CardContent >
         <Typography variant="body2" color="text.secondary">
-          {
-            description || "Lorem ipsum dolor sit amet consectetur adipisicing elit. At natus dolore cumque quidem blanditiis amet maiores. Possimus similique perferendis"
-          }
-    
+          {description || "Descrição não disponível"}    
         </Typography>
       </CardContent>
 

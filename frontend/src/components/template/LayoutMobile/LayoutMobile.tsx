@@ -9,11 +9,7 @@ const BoxWrapperSx = {
   height:'100%', display:'flex', flexDirection:'column', justifyContent:'space-between', overflow: "hidden", padding:'56px 0'
 }
 
-interface PropsInterface {
-  children: ReactJSXElement;
-}
-
-export function LayoutMobile({ children }:PropsInterface ) {
+export function LayoutMobile({children}: any) {
   return (
     <Box sx={{ ...BoxWrapperSx }}>
       <HeaderNavigationMobile title="Marvel Store" />

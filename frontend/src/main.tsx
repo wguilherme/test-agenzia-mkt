@@ -5,12 +5,13 @@ import '@fontsource/roboto/700.css';
 import { indigo } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom/client";
 import { Provider } from 'react-redux';
 import App from './App';
 import { UserProvider } from '@/contexts';
 import { store } from './store';
 import './styles/global.scss';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 
 const theme: any = createTheme({
   palette: {
@@ -26,15 +27,21 @@ const theme: any = createTheme({
   }
 })
 
-ReactDOM.render(
+const queryClient = new QueryClient()
+
+const root = ReactDOM.createRoot(document.getElementById("root")!);
+
+root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+      
       <UserProvider>
         <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
           <App />
+          </QueryClientProvider>
         </Provider>
       </UserProvider>
     </ThemeProvider>
   </React.StrictMode>,
-  document.getElementById('root')
 )
