@@ -1,3 +1,4 @@
-export * from './BottomNavigationMobile'
-export * from './HeaderNavigationMobile'
+export * from '../molecule/BottomNavigationMobile'
+export * from '../molecule/HeaderNavigationMobile'
 export * from './LayoutMobile'
+export * from './ShowComic'
