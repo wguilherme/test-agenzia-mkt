@@ -1,11 +1,49 @@
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Skeleton, Typography } from "@mui/material";
+import { useNavigate } from 'react-router-dom'
 
 interface PropsInterface {
-  title: string;
-  thumbnail: string;
-  description: string;
-  price: number;
+  comicData: {
+    id: number;
+    title: string;
+    thumbnail: string;
+    description: string;
+    updatedAt: string;
+    price: number;
+  } | any
 }
+
+export function ComicCard({comicData}: PropsInterface){
+
+  const {id, title, thumbnail, description, updatedAt, price} = comicData
+
+  const navigate = useNavigate()
+
+  function handleShowComicDetails(comicId:number){ console.log('comicId',id); navigate(`/comics/${comicId}`) }
+
+  return(
+    <Card sx={{mb:3}}>
+      <CardMedia 
+        component="img"
+        height="194"
+        image={thumbnail}
+        alt={title}
+      />   
+
+      <CardContent >
+        <Typography variant="body2" color="text.secondary">
+          {`${description.slice(0, 100)}...` || "Descrição não disponível"}
+        </Typography>
+      </CardContent>
+
+      <CardActions sx={{justifyContent: 'space-between', py:3, px:2}}>
+        <Button size="small">Adicionar ao carrinho</Button>
+        <Button size="small" onClick={()=>handleShowComicDetails(id)}>Detalhes</Button>
+        <FavoriteBorder color="primary"/>
+      </CardActions>
+    </Card>
+  )
+} 
 
 export function ComicCardSkeleton(){
   return(
@@ -26,28 +64,3 @@ export function ComicCardSkeletonList(){
   const list = [1,2,3,4,5,6,7,8,9,10]
   return(<>{list.map((item:any)=>(<ComicCardSkeleton key={item}/>))}</>)
 }
-
-
-export function ComicCard({title, thumbnail, description, price}: PropsInterface){
-  return(
-    <Card sx={{mb:3}}>
-      <CardMedia 
-        component="img"
-        height="194"
-        image={thumbnail}
-        alt={title}
-      />   
-
-      <CardContent >
-        <Typography variant="body2" color="text.secondary">
-          {description || "Descrição não disponível"}    
-        </Typography>
-      </CardContent>
-
-      <CardActions sx={{justifyContent: 'space-between'}}>
-        <Button size="small">Favoritar</Button>
-        <Button size="small">Adicionar ao carrinho</Button>
-      </CardActions>
-    </Card>
-  )
-} 
