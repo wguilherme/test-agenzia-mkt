@@ -16,7 +16,6 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 
 const theme: any = createTheme({
   palette: {
-    // mode: 'dark',
     primary: red
   },
   typography: {

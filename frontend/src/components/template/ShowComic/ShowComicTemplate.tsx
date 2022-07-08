@@ -20,7 +20,6 @@ export function ShowComicTemplate({comicData}: PropsInterface){
     <Paper sx={{p:0}} elevation={10}>
       <CardMedia 
         component="img"
-        // height="194"
         width="100%"
         image={thumbnail}
         alt={title}
