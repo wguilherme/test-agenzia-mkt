@@ -1,0 +1,31 @@
+// init vite with react-ts
+npm init vite@latest vite-number-conversion -- --template react-ts
+
+// add storybook
+npx storybook init
+
+// add cypress
+yarn add cypress --dev
+npx cypress open
+
+// add react-router-dom
+yarn add react-router-dom
+yarn add @types/react-router-dom
+
+// update main.tsx to basic router design:
+```
+<BrowserRouter>
+  <Routes>
+    <Route path="/" element={<App/>}/>
+  </Routes>
+</BrowserRouter>
+```
+
+// add miragejs
+yarn add -D miragejs
+
+// add React Testing Library,Jest and Jest-dom
+yarn add jest @testing-library/jest-dom @testing-library/dom @testing-library/react babel-jest -D
+
+// add jest config
+
