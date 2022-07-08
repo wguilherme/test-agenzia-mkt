@@ -1,5 +1,5 @@
-export function Home() {
-  return (
-    <h2>Home</h2>
-  )
-}
+export * from './Cart'
+export * from './Favorites'
+export * from './History'
+export * from './ListComics'
+export * from './ShowComics'
