@@ -1,11 +1,15 @@
-import { AppBar, Typography, Box } from '@mui/material';
+import { AppBar, Typography } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 
-export function HeaderNavigationMobile({ title }: any) {
+interface PropsInterface {
+  title: string;
+}
+
+export function HeaderNavigationMobile({ title }: PropsInterface) {
   return (
     <AppBar position="fixed">
-      <Toolbar sx={{ bgcolor: "primary.main" }}>
-        <Typography align="center" variant="h6" component="div" sx={{ flexGrow: 1, color: 'white' }}>
+      <Toolbar>
+        <Typography>
           {title || 'Marvel App'}
         </Typography>
       </Toolbar >

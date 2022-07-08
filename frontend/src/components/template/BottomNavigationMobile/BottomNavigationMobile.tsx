@@ -5,9 +5,8 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 const paperSx = {
-  
+  position: 'fixed', bottom: 0, left: 0, right: 0
 }
 
 export function BottomNavigationMobile() {
@@ -21,7 +20,7 @@ export function BottomNavigationMobile() {
   useEffect(()=>{navigate(navigationPages[activeMenuIdx])}, [activeMenuIdx]);
 
   return (
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+    <Paper sx={paperSx} elevation={3}>
     <BottomNavigation
       showLabels
       value={activeMenuIdx}

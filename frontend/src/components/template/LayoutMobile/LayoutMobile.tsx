@@ -1,4 +1,5 @@
 import { HeaderNavigationMobile, BottomNavigationMobile} from "@/components";
+import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 import { Box } from "@mui/material";
 
 const BoxContentSx = {
@@ -8,7 +9,11 @@ const BoxWrapperSx = {
   height:'100%', display:'flex', flexDirection:'column', justifyContent:'space-between', overflow: "hidden", padding:'56px 0'
 }
 
-export function LayoutMobile({ children }: any) {
+interface PropsInterface {
+  children: ReactJSXElement;
+}
+
+export function LayoutMobile({ children }:PropsInterface ) {
   return (
     <Box sx={{ ...BoxWrapperSx }}>
       <HeaderNavigationMobile title="Marvel Store" />
