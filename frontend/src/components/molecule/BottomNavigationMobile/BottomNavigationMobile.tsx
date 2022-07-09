@@ -14,28 +14,48 @@ export function BottomNavigationMobile() {
 
   const { cart } = useSelector((state: any) => state.cart)
 
-
   const navigate = useNavigate();
 
   const [activeMenuIdx, setActiveMenuIdx] = useState<number>(0);
 
-  const navigationPages = ['/comics', '/cart', '/favorites', '/history']
+  const navigationPages = ['/comics', '/cart', '/favorites', '/purchases']
 
-  useEffect(()=>{navigate(navigationPages[activeMenuIdx])}, [activeMenuIdx]);
+  useEffect(()=>{
+
+    const mainPage = navigationPages.some(page => page !== window.location.pathname)
+    if(mainPage){
+      navigate(navigationPages[activeMenuIdx])
+    } else {
+      console.log('not main page')
+    }
+
+    
+  
+  }, [activeMenuIdx]
+    );
 
   return (
     <Paper sx={paperSx} elevation={3}>
+
     <BottomNavigation
       showLabels
       value={activeMenuIdx}
       onChange={(event, newValue:number) => {setActiveMenuIdx(newValue)}}
       >   
+
       <BottomNavigationAction label="Quadrinhos" icon={<Dashboard/>}/>
-      <BottomNavigationAction label="Carrinho" icon={<Badge badgeContent={cart?.length} color="error">
-          <ShoppingCart />
-        </Badge>}/>
+
+      <BottomNavigationAction label="Carrinho" 
+        icon={
+          <Badge badgeContent={cart?.length} color="error">
+          <ShoppingCart />  
+          </Badge>
+          }
+      />
+
       <BottomNavigationAction label="Favoritos" icon={<Bookmarks/>}/>
-      <BottomNavigationAction label="Histórico" icon={<Receipt/>}/>
+
+      <BottomNavigationAction label="Compras" icon={<Receipt/>}/>
 
     </BottomNavigation>
     </Paper>

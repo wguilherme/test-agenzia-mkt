@@ -10,7 +10,6 @@ type Comic = {
   description: string
   thumbnail: string
   price: number
-  updatedAt: string
 }
 
 export async function getComics(): Promise<Comic[]>{ 
@@ -24,18 +23,17 @@ export async function getComics(): Promise<Comic[]>{
     }
   })
 
-  const comics = data.results.filter((comic:any) => comic.description !== null && comic.description !== '')
-  .map((comic:any) => {
-    return {
-      id: comic.id,
-      title: comic.title,
-      description: comic.description,
-      thumbnail: `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
-      price: comic?.prices[0]?.price || 0,
-      updatedAt: new Date(comic.modified).toLocaleDateString('pt-BR', {
-         day: '2-digit', month: 'long', year: 'numeric' 
-      })}
-  })  
+  const comics = 
+  data.results.filter((comic:any) => comic.description !== null && comic.description !== '')
+    .map((comic:any) => {
+      return {
+        id: comic.id,
+        title: comic.title,
+        description: comic.description,
+        thumbnail: `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
+        price: comic?.prices[0]?.price || 49.90
+      }
+    })  
   return comics
 }
 

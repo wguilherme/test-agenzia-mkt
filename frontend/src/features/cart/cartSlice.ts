@@ -4,6 +4,7 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     cart: <any>[],
+    payments: <any>[]
   },
   reducers: {
     addComicToCart: (state, actions) => {
@@ -21,8 +22,17 @@ export const cartSlice = createSlice({
       const newCart = state.cart.filter((comicId:any) => comicId !== id)
       state.cart = newCart
     },
-    clearCart: (state) => {
-      state.cart = []
+    orderComic: (state, actions) => {
+      const id = actions.payload
+
+      const newPayment = {
+        products: state.cart,
+        date: new Date(),
+      }
+      
+      const newPayments = [...state.payments]
+
+      state.payments = newPayments
     }
   },
 })

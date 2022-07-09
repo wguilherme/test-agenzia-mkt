@@ -3,6 +3,7 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, IconButton, Ske
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 import { addComicToCart, removeComicFromCart } from "@/features";
+import { FavoriteButton } from "@/components";
 
 interface PropsInterface {
   comicData: {
@@ -10,13 +11,12 @@ interface PropsInterface {
     title: string;
     thumbnail: string;
     description: string;
-    updatedAt: string;
     price: number;
   } | any
 }
 
 export function ComicCard({comicData}: PropsInterface){
-  const {id, title, thumbnail, description, updatedAt, price} = comicData
+  const {id, title, thumbnail, description, price} = comicData
   const {cart} = useSelector((state: any) => state.cart)
 
   const dispatch = useDispatch()
@@ -55,10 +55,8 @@ export function ComicCard({comicData}: PropsInterface){
           }
   
         <Button size="small" onClick={handleShowComicDetails}>Detalhes</Button>
-        
-        <IconButton >
-          <FavoriteBorder />
-        </IconButton>
+                
+        <FavoriteButton type="icon" comicId={id} />
 
       </CardActions>
     </Card>

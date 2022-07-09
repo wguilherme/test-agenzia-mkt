@@ -12,11 +12,15 @@ import { UserProvider } from '@/contexts';
 import { store } from './store';
 import './styles/global.scss';
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
+// import { ReactQueryDevtools } from 'react-query/devtools'
 
 const theme: any = createTheme({
   palette: {
-    primary: red
+    primary: red,
+    secondary: {
+      main: '#518CC9',
+      contrastText: '#fff',
+    }
   },
   typography: {
     fontFamily: 'Roboto',

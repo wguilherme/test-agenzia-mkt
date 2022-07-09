@@ -1,5 +1,5 @@
 export * from './Cart'
 export * from './Favorites'
-export * from './History'
+export * from './Purchases'
 export * from './ListComics'
 export * from './ShowComics'

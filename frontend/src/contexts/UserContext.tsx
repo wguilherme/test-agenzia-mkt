@@ -1,14 +1,18 @@
 import { createContext, useState } from 'react'
-
 export const UserContext: any = createContext(UserProvider)
 
+interface Purchases {
+  comics: any[],
+  totalPrice: string,
+  createdAt: Date | string
+}
+
 export function UserProvider(props: any) {
-  const [userCart,setCart ] = useState<any>([])
-  const [favorites, setFavorites ] = useState<any>([])
-  const [purchases, setPurchases ] = useState<any>([])
+
+  const [userPurchases, setUserPurchases ] = useState<Purchases[]>([])
 
   return (
-    <UserContext.Provider value={{ userCart,setCart, favorites,setFavorites, purchases, setPurchases  }}>
+    <UserContext.Provider value={{ userPurchases, setUserPurchases  }}>
       {props.children}
     </UserContext.Provider>
   )
