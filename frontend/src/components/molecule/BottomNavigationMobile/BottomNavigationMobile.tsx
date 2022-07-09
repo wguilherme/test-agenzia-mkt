@@ -1,8 +1,9 @@
 import { Dashboard, ShoppingCart, Bookmarks,Receipt } from '@mui/icons-material';
-import { Paper } from '@mui/material';
+import { Badge, Paper } from '@mui/material';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import {useState, useEffect} from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const paperSx = {
@@ -10,6 +11,9 @@ const paperSx = {
 }
 
 export function BottomNavigationMobile() {
+
+  const { cart } = useSelector((state: any) => state.cart)
+
 
   const navigate = useNavigate();
 
@@ -25,10 +29,11 @@ export function BottomNavigationMobile() {
       showLabels
       value={activeMenuIdx}
       onChange={(event, newValue:number) => {setActiveMenuIdx(newValue)}}
-      >
-
+      >   
       <BottomNavigationAction label="Quadrinhos" icon={<Dashboard/>}/>
-      <BottomNavigationAction label="Carrinho" icon={<ShoppingCart/>}/>
+      <BottomNavigationAction label="Carrinho" icon={<Badge badgeContent={cart?.length} color="error">
+          <ShoppingCart />
+        </Badge>}/>
       <BottomNavigationAction label="Favoritos" icon={<Bookmarks/>}/>
       <BottomNavigationAction label="Histórico" icon={<Receipt/>}/>
 

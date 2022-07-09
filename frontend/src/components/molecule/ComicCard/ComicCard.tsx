@@ -1,5 +1,6 @@
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Skeleton, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 
 interface PropsInterface {
@@ -16,6 +17,7 @@ interface PropsInterface {
 export function ComicCard({comicData}: PropsInterface){
 
   const {id, title, thumbnail, description, updatedAt, price} = comicData
+  const {cart} = useSelector((state: any) => state.cart)
 
   const navigate = useNavigate()
 

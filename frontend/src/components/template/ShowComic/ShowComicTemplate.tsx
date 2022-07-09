@@ -1,5 +1,7 @@
 import { FavoriteBorder } from "@mui/icons-material";
 import { Paper,Card, CardMedia, CardContent, Typography, CardActions, Button, Box } from "@mui/material";
+import { useDispatch, useSelector } from 'react-redux';
+import { addComicToCart } from '@/features';
 
 interface PropsInterface {
   comicData: {
@@ -13,6 +15,9 @@ interface PropsInterface {
 }
 
 export function ShowComicTemplate({comicData}: PropsInterface){
+
+  const cart = useSelector((state: any) => state.cart)
+  const dispatch = useDispatch()
 
   const {id, title, thumbnail, description, updatedAt, price} = comicData
   
@@ -36,8 +41,9 @@ export function ShowComicTemplate({comicData}: PropsInterface){
 
       <CardActions>
         <Box display="flex" flexDirection="column" gap={1} flex="1">
-
-        <Button fullWidth variant="contained">Adicionar ao carrinho</Button>
+        <Button fullWidth variant="contained"
+        onClick={() => dispatch(addComicToCart({id}))} 
+        >Adicionar ao carrinho</Button>
         <Button fullWidth variant="outlined" sx={{display: 'flex', gap:1}}>
           <FavoriteBorder color="primary"/>
           Favoritar
