@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UserContext } from '@/contexts'
 import { useContext, useState } from "react";
 import { clearCart } from "@/features";
+import { useFormik } from 'formik';
+import { DialogCoupon } from "@/components";
 
 export function CartPage(){
   
   const { userPurchases, setUserPurchases } = useContext(UserContext)
   const [userPaid, setUserPaid] = useState(false)
+  const [openCouponDialog, setOpenCouponDialog] = useState(false)
   
   const dispatch = useDispatch();
   const { cart } = useSelector((state: any) => state.cart)
@@ -18,7 +21,25 @@ export function CartPage(){
   const coimicsInCart = comics?.filter((comic: any) => cart.includes(comic.id))
   const totalPrice = coimicsInCart?.reduce((acc: number, curr: any) => acc + curr?.price, 0).toFixed(2)
 
-  function handleClearCart() {dispatch(clearCart())}
+  const formik: any = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      couponCode: '',
+    },
+    onSubmit: (formData: any) => {
+      handleApplyCouponCode(formData)
+    }
+  })
+
+  console.log('formik', formik.values)
+
+  function handleOpenCouponDialog(){ setOpenCouponDialog(true) }
+
+  const handleApplyCouponCode = (formData: any) => {
+    console.log('desconto aplicado!', formData)
+  }
+
+  function handleClearCart(){ dispatch( clearCart() )}
 
   function handleCheckout(){
     const newPaymentOrder = {
@@ -29,7 +50,7 @@ export function CartPage(){
 
     const newUserPurchases = [...userPurchases, newPaymentOrder]
     setUserPurchases(newUserPurchases)
-    
+
     handleClearCart()
 
     setUserPaid(true)
@@ -58,7 +79,7 @@ export function CartPage(){
     </Paper>
 
     <Button 
-      sx={{mt:2}}
+      sx={{mt:5}}
       onClick={handleCheckout}
       variant="contained"
       color="secondary"
@@ -66,6 +87,17 @@ export function CartPage(){
       fullWidth>
       Finalizar compra
     </Button>
+
+    <Button 
+      sx={{mt:2, color: '#ffffff90'}}
+      onClick={handleOpenCouponDialog}
+      variant="text"
+      size="large"
+      fullWidth>
+        Aplicar cupom
+    </Button>
+
+    <DialogCoupon openCouponDialog={openCouponDialog} setOpenCouponDialog={setOpenCouponDialog} formik={formik} />
     
     </>
   )
