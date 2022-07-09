@@ -1,19 +1,39 @@
 import { makeServer } from '@/services'
 import { Snackbar, Button } from '@mui/material'
 import { useState } from 'react'
-makeServer()
+import { CouponListItem } from '@/components'
+// makeServer()
 
 export function CouponPage(){
   const [openCouponToast, setOpenCouponToast] = useState(false)
 
   function handleCloseCouponToast(){ setOpenCouponToast(false) }
-  function handleOpenCouponToast(){ setOpenCouponToast(true) }
+  function handleCopyCode(code:string){ 
+    navigator?.clipboard.writeText(code)
+    setOpenCouponToast(true) 
+  }
+
+  const coupons = [{
+    code: '2233',
+    type: 'raro',
+    discount: 10
+    },
+    {
+    code: '5530',
+    type: 'comum',
+    discount: 30
+    },
+    {
+    code: '9988',
+    type: 'comum',
+    discount: 30
+    }]
 
   return(
     <>
-
-    <Button onClick={handleOpenCouponToast}>Open toast</Button>
-
+    {
+      coupons?.map((coupon)=>(<CouponListItem handleCopyCode={()=>handleCopyCode(coupon.code)} key={coupon.discount} couponDetail={coupon}/>))
+    }
 
 
       <Snackbar
