@@ -22,20 +22,13 @@ export const cartSlice = createSlice({
       const newCart = state.cart.filter((comicId:any) => comicId !== id)
       state.cart = newCart
     },
-    orderComic: (state, actions) => {
-      const id = actions.payload
 
-      const newPayment = {
-        products: state.cart,
-        date: new Date(),
-      }
-      
-      const newPayments = [...state.payments]
-
-      state.payments = newPayments
+    clearCart: (state)=>{
+      const emptyCart:any = []
+      state.cart = emptyCart
     }
   },
 })
 
-export const { addComicToCart, removeComicFromCart } = cartSlice.actions
+export const { addComicToCart, removeComicFromCart, clearCart } = cartSlice.actions
 export default cartSlice.reducer

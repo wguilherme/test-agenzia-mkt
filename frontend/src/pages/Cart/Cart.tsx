@@ -1,22 +1,26 @@
 import { CartListItem, PaymentSuccess } from "@/components";
 import { useComics } from "@/services";
 import { Alert, Box, Button, List, Paper, Typography } from "@mui/material";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { UserContext } from '@/contexts'
 import { useContext, useState } from "react";
+import { clearCart } from "@/features";
 
 export function CartPage(){
+  
   const { userPurchases, setUserPurchases } = useContext(UserContext)
   const [userPaid, setUserPaid] = useState(false)
-
+  
+  const dispatch = useDispatch();
   const { cart } = useSelector((state: any) => state.cart)
   const {data: comics, isLoading, error} = useComics()
 
   const coimicsInCart = comics?.filter((comic: any) => cart.includes(comic.id))
   const totalPrice = coimicsInCart?.reduce((acc: number, curr: any) => acc + curr?.price, 0).toFixed(2)
 
-  function handleCheckout(){
+  function handleClearCart() {dispatch(clearCart())}
 
+  function handleCheckout(){
     const newPaymentOrder = {
       comics: coimicsInCart,
       totalPrice,
@@ -26,6 +30,8 @@ export function CartPage(){
     const newUserPurchases = [...userPurchases, newPaymentOrder]
     setUserPurchases(newUserPurchases)
     
+    handleClearCart()
+
     setUserPaid(true)
 
   }
