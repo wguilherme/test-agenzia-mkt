@@ -5,7 +5,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import {CartPage, FavoritesPage, PurchasesPage, ListComicsPage, ShowComicsPage  } from '@/pages';
+import {CartPage, FavoritesPage, PurchasesPage, ListComicsPage, ShowComicsPage, CouponPage  } from '@/pages';
 import { LayoutMobile } from "./components";
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
           <Route path="/comics/:comicId" element={<ShowComicsPage />} />
           <Route path="/comics" element={<ListComicsPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/coupon" element={<CouponPage />} />
       </Route>
       </Routes>
     </BrowserRouter>

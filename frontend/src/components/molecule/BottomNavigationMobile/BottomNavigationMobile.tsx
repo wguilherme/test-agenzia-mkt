@@ -1,4 +1,4 @@
-import { Dashboard, ShoppingCart, Bookmarks,Receipt } from '@mui/icons-material';
+import { Dashboard, ShoppingCart, Bookmarks,Receipt, LocalOffer } from '@mui/icons-material';
 import { Badge, Paper } from '@mui/material';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
@@ -18,7 +18,7 @@ export function BottomNavigationMobile() {
 
   const [activeMenuIdx, setActiveMenuIdx] = useState<number>(0);
 
-  const navigationPages = ['/comics', '/cart', '/favorites', '/purchases']
+  const navigationPages = ['/comics', '/cart', '/favorites', '/purchases', '/coupon']
 
   useEffect(()=>{
 
@@ -56,6 +56,8 @@ export function BottomNavigationMobile() {
       <BottomNavigationAction label="Favoritos" icon={<Bookmarks/>}/>
 
       <BottomNavigationAction label="Compras" icon={<Receipt/>}/>
+      
+      <BottomNavigationAction label="Cupons" icon={<LocalOffer/>}/>
 
     </BottomNavigation>
     </Paper>

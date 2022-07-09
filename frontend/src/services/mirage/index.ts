@@ -1,38 +1,42 @@
-import {ActiveModelSerializer, createServer, Factory, Model } from 'miragejs'
+import { createServer, Factory, Model } from 'miragejs'
 import { faker } from '@faker-js/faker'
 
-type User = {
+type Coupon = {
 	name: string;
 	email: string;
 	created_at: string;
 }
+
 export const makeServer = () => {
 	const server = createServer({
 		models: {
-			user: Model.extend<Partial<User>>({} as User),
+			coupon: Model.extend<Partial<Coupon>>({} as Coupon),
 		},
 		factories: {
-			user: Factory.extend({
-				name() {
-					return faker.internet.userName();
+			coupon: Factory.extend({
+				code() {
+					return faker.random.alphaNumeric(3).toUpperCase()
 				},
-				email() {
-					return faker.internet.email().toLowerCase();
-				},
-				createdAt() {
-					return faker.date.recent();
-				},
+				type(){
+					return faker.helpers.arrayElement(['special', 'common'])
+				}
 			})
 		},
 		seeds(server) {
-			server.createList('user', 200);
+			server.createList('coupon', 5);
 		},
 
 		routes() {
-			this.namespace = 'api';
+			this.passthrough('https://gateway.marvel.com/v1/public')
+			this.passthrough('https://gateway.marvel.com/*')
+			
+			this.urlPrefix = 'http://localhost:3000';
+			this.namespace = 'mock';
 			this.timing = 750; 
-			this.post('/users');
-      this.get('/users')
+			// this.post('/users');
+      // this.get('/users')
+      this.get('/coupons')
+			this.passthrough('https://gateway.marvel.com/*')
 		}
 	})
 
