@@ -17,10 +17,9 @@ export const favoriteSlice = createSlice({
       } 
       
       else {
-        const newFavorites = [...state.favorites, id]
+        const newFavorites:any = [...state.favorites, id]
         state.favorites = newFavorites
       }
-      console.log(state.favorites)
     }
   },
 })

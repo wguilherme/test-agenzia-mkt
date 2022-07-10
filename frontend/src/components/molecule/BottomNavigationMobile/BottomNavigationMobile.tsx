@@ -25,10 +25,7 @@ export function BottomNavigationMobile() {
     const mainPage = navigationPages.some(page => page !== window.location.pathname)
     if(mainPage){
       navigate(navigationPages[activeMenuIdx])
-    } else {
-      console.log('not main page')
     }
-
     
   
   }, [activeMenuIdx]

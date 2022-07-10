@@ -10,7 +10,6 @@ interface PropsInterface {
 }
 
 export function PurchaseListItem({ purchaseDetails: { comics, createdAt, totalPrice }}: PropsInterface) {
-  console.log('purchaseDetails', comics, createdAt, totalPrice)
   return(
     <>
     <Paper>

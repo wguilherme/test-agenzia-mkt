@@ -1,7 +1,7 @@
 import { ListItem, IconButton, ListItemText, Paper } from "@mui/material";
 import { FileCopy } from '@mui/icons-material'
 
-interface PropsInterface {
+type ComponentProps = {
   couponDetail: {
     code: string,
     type: string,
@@ -10,7 +10,8 @@ interface PropsInterface {
   handleCopyCode: () => void
 }
 
-export function CouponListItem({couponDetail: {code, type, discount}, handleCopyCode}: PropsInterface) {
+
+export function CouponListItem({couponDetail: {code, type, discount}, handleCopyCode}: ComponentProps) {
 return(
     <>
     <Paper>

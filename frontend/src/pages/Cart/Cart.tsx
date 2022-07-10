@@ -1,5 +1,5 @@
 import { CartListItem, PaymentSuccess } from "@/components";
-import { useComics } from "@/services";
+import {  useComics } from "@/services";
 import { Alert, Box, Button, List, Paper, Typography } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
 import { UserContext } from '@/contexts'
@@ -7,7 +7,6 @@ import { useContext, useState, useEffect } from "react";
 import { clearCart } from "@/features";
 import { useFormik } from 'formik';
 import { DialogCoupon } from "@/components";
-import { apiMock } from '@/services'
 
 export function CartPage(){
   
@@ -19,19 +18,10 @@ export function CartPage(){
   const { cart } = useSelector((state: any) => state.cart)
   const {data: comics, isLoading, error} = useComics()
 
-  const [data, setData] = useState()
-
   const coimicsInCart = comics?.filter((comic: any) => cart.includes(comic.id))
   const totalPrice = coimicsInCart?.reduce((acc: number, curr: any) => acc + curr?.price, 0).toFixed(2)
 
 
-  useEffect(()=>{
-    async function fetchData(){
-      const data:any = await apiMock.get('/coupons')
-      setData(data)      
-    }
-    fetchData()
-  },[])
 
 
   const formik: any = useFormik({
@@ -44,7 +34,7 @@ export function CartPage(){
     }
   })
 
-  console.log('formik', formik.values)
+
 
   function handleOpenCouponDialog(){ setOpenCouponDialog(true) }
 
