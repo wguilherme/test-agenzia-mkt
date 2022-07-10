@@ -32,7 +32,7 @@ export function CouponPage(){
   return(
     <>
     {
-      coupons?.map((coupon)=>(<CouponListItem handleCopyCode={()=>handleCopyCode(coupon.code)} key={coupon.discount} couponDetail={coupon}/>))
+      coupons?.map((coupon)=>(<CouponListItem key={coupon.code} handleCopyCode={()=>handleCopyCode(coupon.code)} couponDetail={coupon}/>))
     }
 
 

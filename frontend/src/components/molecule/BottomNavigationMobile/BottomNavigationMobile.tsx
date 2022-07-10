@@ -36,7 +36,6 @@ export function BottomNavigationMobile() {
 
   return (
     <Paper sx={paperSx} elevation={3}>
-
     <BottomNavigation
       showLabels
       value={activeMenuIdx}
