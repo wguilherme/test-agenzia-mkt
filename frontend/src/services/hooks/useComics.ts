@@ -5,6 +5,7 @@ const oneSecond = 1000 // 1 second in milliseconds
 const oneMinute = oneSecond * 60;
 
 type Comic = {
+  type: string;
   id: number
   title: string
   description: string

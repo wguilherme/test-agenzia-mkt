@@ -47,7 +47,7 @@ export function CartPage(){
   function handleOpenCouponDialog(){ setOpenCouponDialog(true) }
 
   const handleApplyCouponCode = ({couponCode}: any) => {
-    if(couponCode !== 'AG3NZ1A' && comicsInCart?.some((comicItem)=> comicItem?.type === 'Especial')){
+    if(couponCode !== 'AG3NZ1A' && comicsInCart?.some((comicItem:any)=> comicItem?.type === 'Especial')){
       setCouponToast(true)
     } else {
       setDiscountActive(couponsDiscounts[couponCode])
