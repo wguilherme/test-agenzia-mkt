@@ -41,25 +41,25 @@ No link abaixo está disponível o documento do desafio:
 
 ## Rode localmente
 
-Clone the project
+Clone o projeto
 
 ```bash
   git clone https://github.com/wguilherme/test-agenzia-mkt
 ```
 
-Go to the project directory
+Entre na pasta do projeto
 
 ```bash
   cd my-project
 ```
 
-Install dependencies
+Instale as dependências
 
 ```bash
   npm install
 ```
 
-Start the server
+Inicie a aplicação
 
 ```bash
   npm run dev
