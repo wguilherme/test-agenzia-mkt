@@ -1,60 +1,50 @@
+# Marvel - Teste Agenzia MKT
 
-# React, Typescript e Vite
+## Links
+[Acessar demonstração (vercel)](https://marvel-agenzia.vercel.app)
 
-Frontend Fornecedores 300c
-
-
-## Other Common Github Profile Sections
-✅  ReactJS
-
-✅  Typescript
-
-✅  ViteJS
-
-✅  Unit tests with React Testing Library and Jest
-
-✅  Storybook
-
-✅  Cypress
-
-✅  Formik
-
-✅  YUP
-
-✅  Docker E2E testing
-
-✅  React Query
-
-✅  Material UI
-
-✅  MirageJS
+[Flow wireframe (figma)](https://www.figma.com/file/ODXAk6kahVlnOvm54Q3JOk/Wireframe---Marvel-Agenzia?node-id=0%3A1)
 
 
-✅  Axios
+## Licenças 
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
+[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
-✅  Redux
+## Demonstração
+![screenshot](/preview.gif)
 
-✅  TDD
+## 💻 Projeto
 
-✅  Conventional Commits
+O projeto é uma aplicação de teste para a agência MKT. A aplicação consiste em apresentar uma tela de listagem de quadrinhos, marcar 10% deles como raros, adicionar/remover quadrinhos dos favoritos. Adicionar quadrinhos ao carrinho de compras, aplicar cupom de desconto, finalizar a compra, ver a listagem de compras realizadas dentre outras features. 
 
-✅  Eslint/Pretiter + Lint Staged
+## 🧠 Desafio
 
-✅  Sass
+No link abaixo está disponível o documento do desafio:
 
+- [Desafio Agência MKT - Marvel]('/desafio.pdf')
 
+## O que foi utilizado?
 
-## Authors
+- [Atomic Design Methodology](https://atomicdesign.bradfrost.com/chapter-2/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Jest](https://jestjs.io/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Material UI](https://mui.com/pt/)
+- [Formik](https://formik.org/)
+- [Yup](https://www.npmjs.com/package/yup)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+- [Storybook](https://storybook.js.org/)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
 
-- [@wguilherme](https://www.github.com/wguilherme)
-
-
-## Run Locally
+## Rode localmente
 
 Clone the project
 
 ```bash
-  git clone https://github.com/wguilherme/react-vite-storybook-cypress
+  git clone https://github.com/wguilherme/test-agenzia-mkt
 ```
 
 Go to the project directory
@@ -75,46 +65,4 @@ Start the server
   npm run dev
 ```
 
-
-## Support
-
-For support, email wguilherme.dev@gmail.com
-
-
-## Tech Stack
-
-**Client:** React, Redux, Material UI, 
-
-**Design System:** Material UI, Atomic Design
-
-**Testing and Documentation:** Storybook, Cypress, React Testing Library, Jest
-
-**Practices:** Component First, Atomic. Design, TDD, Conventional Commits, Lint Staged, Eslint/Prettier
-
-
-## Running Tests
-
-To run tests, run the following command
-
-```bash
-  // unit tests
-  npm run test
-
-  // cypress headless/terminal
-  npm run cy:run
-
-  // cypress e2e
-  npm run cy:open
-
-  // run tests with docker-compose
-  docker-compose up --build
-```
-
-
-## Badges
-
-Add badges from somewhere like: [shields.io](https://shields.io/)
-
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
-[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+## Feito por Withney Guilherme [@wguilherme](https://www.github.com/wguilherme)
