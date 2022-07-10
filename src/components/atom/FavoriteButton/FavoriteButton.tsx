@@ -3,12 +3,12 @@ import { FavoriteBorder, Favorite } from "@mui/icons-material"
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleFavorite} from '@/features'
 
-interface PropsInterface {
+type Props =  {
   type?: 'button' | 'icon',
   comicId: number | string
 }
 
-export function FavoriteButton({ type = 'button', comicId }: PropsInterface ){
+export function FavoriteButton({ type = 'button', comicId }: Props ){
   
   const dispatch = useDispatch()
 

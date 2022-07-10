@@ -6,10 +6,6 @@ import {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const paperSx = {
-  position: 'fixed', bottom: 0, left: 0, right: 0
-}
-
 export function BottomNavigationMobile() {
 
   const { cart } = useSelector((state: any) => state.cart)
@@ -23,16 +19,18 @@ export function BottomNavigationMobile() {
   useEffect(()=>{
 
     const mainPage = navigationPages.some(page => page !== window.location.pathname)
+
     if(mainPage){
       navigate(navigationPages[activeMenuIdx])
     }
-    
-  
-  }, [activeMenuIdx]
-    );
+
+  }, [activeMenuIdx]);
 
   return (
-    <Paper sx={paperSx} elevation={3}>
+    <Paper sx={{
+      position: 'fixed', bottom: 0, left: 0, right: 0
+    }} elevation={3}>
+
     <BottomNavigation
       showLabels
       value={activeMenuIdx}
@@ -50,12 +48,11 @@ export function BottomNavigationMobile() {
       />
 
       <BottomNavigationAction label="Favoritos" icon={<Bookmarks/>}/>
-
       <BottomNavigationAction label="Compras" icon={<Receipt/>}/>
-      
       <BottomNavigationAction label="Cupons" icon={<LocalOffer/>}/>
 
     </BottomNavigation>
+    
     </Paper>
   )
 }

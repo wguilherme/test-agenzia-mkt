@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { addComicToCart, removeComicFromCart } from "@/features";
 import { FavoriteButton } from "@/components";
 
-interface PropsInterface {
+type Props = {
   comicData: {
     id: number;
     title: string;
@@ -14,8 +14,8 @@ interface PropsInterface {
   } | any
 }
 
-export function ComicCard({comicData}: PropsInterface){
-  const {id, title, thumbnail, description, price, type} = comicData
+export function ComicCard({comicData: {id, title, thumbnail, description, price, type }}: Props){
+  
   const {cart} = useSelector((state: any) => state.cart)
 
   const dispatch = useDispatch()
@@ -66,7 +66,6 @@ export function ComicCard({comicData}: PropsInterface){
           <Button variant="outlined"  color="primary" onClick={handleAddComicToCart}>
             Adicionar ao carrinho
           </Button>
-
           }
   
         <Button size="small" onClick={handleShowComicDetails}>Detalhes</Button>

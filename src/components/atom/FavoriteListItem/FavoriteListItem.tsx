@@ -1,7 +1,7 @@
-import { ListItem, IconButton, ListItemText, Paper } from "@mui/material";
+import { ListItem, ListItemText, Paper } from "@mui/material";
 import { FavoriteButton } from "../FavoriteButton";
 
-type FavoriteListItemProps = {
+type Props = {
   comicItem: {
     id: string,
     title: string,
@@ -9,7 +9,7 @@ type FavoriteListItemProps = {
   } 
 }
 
-export function FavoriteListItem({comicItem: { id, title, price }}: FavoriteListItemProps) {
+export function FavoriteListItem({comicItem: { id, title, price }}: Props) {
   return(
     <Paper>
     <ListItem
@@ -19,6 +19,5 @@ export function FavoriteListItem({comicItem: { id, title, price }}: FavoriteList
       <ListItemText primary={title} secondary={`R$ ${price}`}/>
     </ListItem>
     </Paper>
-
   )
 }

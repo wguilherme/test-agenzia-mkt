@@ -7,8 +7,8 @@ export const favoriteSlice = createSlice({
   },
   reducers: {
     toggleFavorite: (state, actions) => {
-      const id = actions.payload
 
+      const id = actions.payload
       const alreadyInFavorites = state.favorites.find((comicId:any) => comicId === id)
 
       if(alreadyInFavorites) {

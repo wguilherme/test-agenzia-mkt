@@ -3,7 +3,7 @@ import { Delete } from '@mui/icons-material'
 import { removeComicFromCart } from '@/features';
 import { useDispatch } from "react-redux";
 
-type CartListItemProps = {
+type Props = {
   comicItem: {
     id: string,
     title: string,
@@ -11,9 +11,10 @@ type CartListItemProps = {
   } 
 }
 
-export function CartListItem({comicItem: { id, title, price }}: CartListItemProps) {
+export function CartListItem({comicItem: { id, title, price }}: Props) {
 
   const dispatch = useDispatch();
+  
   function handleRemoveComicFromCart() {dispatch(removeComicFromCart(id))}
 
   return(
@@ -29,6 +30,5 @@ export function CartListItem({comicItem: { id, title, price }}: CartListItemProp
       <ListItemText primary={title} secondary={`R$ ${price}`}/>
     </ListItem>
     </Paper>
-
   )
 }

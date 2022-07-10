@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react'
 export const UserContext: any = createContext(UserProvider)
 
-interface Purchases {
+type Purchases = {
   comics: any[],
   totalPrice: string,
   createdAt: Date | string

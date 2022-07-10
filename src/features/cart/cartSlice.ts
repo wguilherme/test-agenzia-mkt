@@ -8,8 +8,8 @@ export const cartSlice = createSlice({
   },
   reducers: {
     addComicToCart: (state, actions) => {
-      const id = actions.payload
 
+      const id = actions.payload
       const alreadyInCart = state.cart.find((comicId:any) => comicId === id)
 
       if(!alreadyInCart) {

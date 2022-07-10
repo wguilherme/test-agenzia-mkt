@@ -1,10 +1,9 @@
-import { FavoriteBorder } from "@mui/icons-material";
-import { Paper,Card, CardMedia, CardContent, Typography, CardActions, Button, Box } from "@mui/material";
+import { Paper, CardMedia, CardContent, Typography, CardActions, Button, Box } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
-import { addComicToCart, removeComicFromCart, toggleFavorite } from '@/features';
+import { addComicToCart, removeComicFromCart } from '@/features';
 import { FavoriteButton } from "@/components";
 
-interface PropsInterface {
+type Props = {
   comicData: {
     id: number;
     title: string;
@@ -14,7 +13,7 @@ interface PropsInterface {
   },
 }
 
-export function ShowComicTemplate({comicData}: PropsInterface){
+export function ShowComicTemplate({comicData}: Props){
 
   const { cart } = useSelector((state: any) => state.cart)
 

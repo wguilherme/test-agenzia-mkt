@@ -1,13 +1,12 @@
-import { CartListItem, PaymentSuccess } from "@/components";
-import {  useComics } from "@/services";
-import { Alert, Box, Button, List, Paper, Snackbar, Typography } from "@mui/material";
+import { Alert, Button, List,  Snackbar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
-import { UserContext } from '@/contexts'
-import { useContext, useState, useEffect } from "react";
-import { clearCart } from "@/features";
+import { useContext, useState } from "react";
 import { useFormik } from 'formik';
-import { DialogCoupon } from "@/components";
 import * as yup from 'yup';
+import { CartListItem, PaymentSuccess, DialogCoupon, CartTotalPrice } from "@/components";
+import {  useComics } from "@/services";
+import { UserContext } from '@/contexts'
+import { clearCart } from "@/features";
 
 const couponsDiscounts:any = { 'AG3NZ1A': 0.93, 'ANY22': 0.1, 'ANY55': 0.25}
 
@@ -18,9 +17,7 @@ export function CartPage(){
   const [discountActive, setDiscountActive] = useState()
   const [couponToast, setCouponToast] = useState(false)
 
-  
   const { userPurchases, setUserPurchases } = useContext(UserContext)
-
   const dispatch = useDispatch();
   const { cart } = useSelector((state: any) => state.cart)  
   const {data: comics, isLoading, error} = useComics()
@@ -80,62 +77,43 @@ export function CartPage(){
 
   else return(
     <>
-    <List>
-      {
-        comicsInCart?.map((comic: any) => (<CartListItem key={comic.id} comicItem={comic} />))
-      }
-    </List>
+      <List>
+        {comicsInCart?.map((comic: any) => (<CartListItem key={comic.id} comicItem={comic} />))}
+      </List>
 
-    <Paper>
-      <Box sx={{ p:2}}>
-        <>
-          <Typography sx={{ textDecoration: discountActive ? 'line-through' : 'none' }} variant="body1">Total:</Typography>
-           <Typography sx={{ textDecoration: discountActive ? 'line-through' : 'none' }} variant="h6"> R$ {totalPrice}</Typography>
-           </>
-        {discountActive && (
-          <>
-          <Typography sx={{mt:2}} variant="body1">Cupom aplicado</Typography>
-          <Typography variant="h6">Total com desconto:</Typography>
-           <Typography variant="h6"> R$ {totalPriceWithDiscount}</Typography>
-           </>
-        )}
-        
-      </Box>   
-    </Paper>
+  <CartTotalPrice discountActive={discountActive} totalPrice={totalPrice} totalPriceWithDiscount={totalPriceWithDiscount}/>
 
-    <Button 
-      sx={{mt:5}}
-      onClick={handlePayment}
-      variant="contained"
-      color="secondary"
-      size="large"
-      fullWidth>
-      Finalizar compra
-    </Button>
+      <Button 
+        sx={{mt:5}}
+        onClick={handlePayment}
+        variant="contained"
+        color="secondary"
+        size="large"
+        fullWidth>
+        Finalizar compra
+      </Button>
 
-    <Button 
-      sx={{mt:2, color: '#ffffff90'}}
-      onClick={handleOpenCouponDialog}
-      variant="text"
-      size="large"
-      fullWidth>
-        Aplicar cupom
-    </Button>
+      <Button 
+        sx={{mt:2, color: '#ffffff90'}}
+        onClick={handleOpenCouponDialog}
+        variant="text"
+        size="large"
+        fullWidth>
+          Aplicar cupom
+      </Button>
 
-    <DialogCoupon openCouponDialog={openCouponDialog} setOpenCouponDialog={setOpenCouponDialog} formik={formik} />
+      <DialogCoupon openCouponDialog={openCouponDialog} setOpenCouponDialog={setOpenCouponDialog} formik={formik} />
 
-    <Snackbar
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'center',
-      }}
-      open={couponToast}
-      autoHideDuration={3000}
-      onClose={() => setCouponToast(false)}
-      message={'Remova o quadrinho especial para aplicar o cupom comum.'}
-    />
-
-    
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        open={couponToast}
+        autoHideDuration={3000}
+        onClose={() => setCouponToast(false)}
+        message={'Remova o quadrinho especial para aplicar o cupom comum.'}
+      />    
     </>
   )
 }
