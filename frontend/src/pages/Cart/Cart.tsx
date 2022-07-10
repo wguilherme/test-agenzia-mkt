@@ -9,7 +9,7 @@ import { useFormik } from 'formik';
 import { DialogCoupon } from "@/components";
 import * as yup from 'yup';
 
-const couponsDiscounts:any = { 'AG3NZ1A': 1, 'ANY22': 0.2, 'ANY55': 0.3}
+const couponsDiscounts:any = { 'AG3NZ1A': 0.93, 'ANY22': 0.1, 'ANY55': 0.25}
 
 export function CartPage(){
   
@@ -42,7 +42,6 @@ export function CartPage(){
     }
   })
 
-
   function handleOpenCouponDialog(){ setOpenCouponDialog(true) }
 
   const handleApplyCouponCode = ({couponCode}: any) => {
@@ -52,20 +51,17 @@ export function CartPage(){
 
   function handleClearCart(){ dispatch( clearCart() )}
 
-  function handleCheckout(){
+  function handlePayment(){
     const newPaymentOrder = {
       comics: coimicsInCart,
       totalPrice: discountActive ? totalPriceWithDiscount : totalPrice,
       createdAt: new Date()
     }
-
     const newUserPurchases = [...userPurchases, newPaymentOrder]
+
     setUserPurchases(newUserPurchases)
-
     handleClearCart()
-
     setUserPaid(true)
-
   }
 
   if (isLoading) return <Typography>Carregando dados...</Typography>
@@ -74,6 +70,7 @@ export function CartPage(){
   )
 
   if(userPaid) return <PaymentSuccess/>
+
   else return(
     <>
     <List>
@@ -90,20 +87,18 @@ export function CartPage(){
            </>
         {discountActive && (
           <>
-          <Typography sx={{mt:2}} variant="body1">Cupom aplicado:</Typography>
+          <Typography sx={{mt:2}} variant="body1">Cupom aplicado</Typography>
           <Typography variant="h6">Total com desconto:</Typography>
            <Typography variant="h6"> R$ {totalPriceWithDiscount}</Typography>
            </>
         )}
         
-      </Box>
- 
-   
+      </Box>   
     </Paper>
 
     <Button 
       sx={{mt:5}}
-      onClick={handleCheckout}
+      onClick={handlePayment}
       variant="contained"
       color="secondary"
       size="large"

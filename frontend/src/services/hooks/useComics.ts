@@ -25,13 +25,14 @@ export async function getComics(): Promise<Comic[]>{
 
   const comics = 
   data.results.filter((comic:any) => comic.description !== null && comic.description !== '')
-    .map((comic:any) => {
+    .map((comic:any, comicIdx: number) => {
       return {
         id: comic.id,
         title: comic.title,
         description: comic.description,
         thumbnail: `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
-        price: comic?.prices[0]?.price || 49.90
+        price: comic?.prices[0]?.price || 49.90,
+        type: comicIdx % 10 === 0 ? 'Especial' : 'Comum'
       }
     })  
   return comics

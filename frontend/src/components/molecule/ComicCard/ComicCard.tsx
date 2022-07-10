@@ -1,5 +1,4 @@
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
-import { Box, Button, Card, CardActions, CardContent, CardMedia, IconButton, Skeleton, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Skeleton, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 import { addComicToCart, removeComicFromCart } from "@/features";
@@ -16,7 +15,7 @@ interface PropsInterface {
 }
 
 export function ComicCard({comicData}: PropsInterface){
-  const {id, title, thumbnail, description, price} = comicData
+  const {id, title, thumbnail, description, price, type} = comicData
   const {cart} = useSelector((state: any) => state.cart)
 
   const dispatch = useDispatch()
@@ -27,8 +26,21 @@ export function ComicCard({comicData}: PropsInterface){
   function handleRemoveComicFromCart(){dispatch(removeComicFromCart(id))}
 
   return(
-    <Card sx={{mb:3}}>
+    <Card sx={{mb:3, position: 'relative'}}>
+      
+      <Chip sx={{
+        position: 'absolute',
+        top: "12px",
+        right: "12px",
+        backgroundColor: type === 'Especial' ? '#202024' : 'white',
+        color: type === 'Especial' ? 'white' : 'gray',
+        fontSize: '14px',
+        fontWeight: 'bold',
+        
+        }} label={type} />
+      
       <CardMedia 
+       onClick={handleShowComicDetails}
         component="img"
         height="194"
         image={thumbnail}
@@ -36,19 +48,22 @@ export function ComicCard({comicData}: PropsInterface){
       />   
 
       <CardContent >
-        <Typography variant="body2" color="text.secondary">
-          {`${description.slice(0, 100)}...` || "Descrição não disponível"}
+        <Typography variant="body1" color="text.secondary">
+          {`${description.slice(0, 70)}...` || "Descrição não disponível"}
+        </Typography>
+        <Typography variant="h6" sx={{fontWeight:'bold', mt:2}}>
+            R$ {price.toFixed(2).replace('.', ',')}
         </Typography>
       </CardContent>
 
-      <CardActions sx={{justifyContent: 'space-between', py:3, px:2}}>
+      <CardActions sx={{justifyContent: 'space-between', pb:2, px:2}}>
           {
           cart?.includes(id) ?
-          <Button size="small" onClick={handleRemoveComicFromCart}>
+          <Button onClick={handleRemoveComicFromCart}>
             Remover do carrinho
           </Button>
           : 
-          <Button size="small" onClick={handleAddComicToCart}>
+          <Button variant="outlined"  color="primary" onClick={handleAddComicToCart}>
             Adicionar ao carrinho
           </Button>
 

@@ -6,7 +6,7 @@ addMock('http://localhost:4000/coupons', { data: [
   {
   code: 'AG3NZ1A',
   type: 'raro',
-  discount: 100
+  discount: 90
   },
   {
   code: 'ANY22',
