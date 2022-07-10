@@ -1,6 +1,6 @@
 import { CartListItem, PaymentSuccess } from "@/components";
 import {  useComics } from "@/services";
-import { Alert, Box, Button, List, Paper, Typography } from "@mui/material";
+import { Alert, Box, Button, List, Paper, Snackbar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
 import { UserContext } from '@/contexts'
 import { useContext, useState, useEffect } from "react";
@@ -16,6 +16,8 @@ export function CartPage(){
   const [userPaid, setUserPaid] = useState(false)
   const [openCouponDialog, setOpenCouponDialog] = useState(false)
   const [discountActive, setDiscountActive] = useState()
+  const [couponToast, setCouponToast] = useState(false)
+
   
   const { userPurchases, setUserPurchases } = useContext(UserContext)
 
@@ -23,8 +25,8 @@ export function CartPage(){
   const { cart } = useSelector((state: any) => state.cart)  
   const {data: comics, isLoading, error} = useComics()
 
-  const coimicsInCart = comics?.filter((comic: any) => cart.includes(comic.id))
-  const totalPrice: any = coimicsInCart?.reduce((acc: number, curr: any) => acc + curr?.price, 0).toFixed(2)
+  const comicsInCart = comics?.filter((comic: any) => cart.includes(comic.id))
+  const totalPrice: any = comicsInCart?.reduce((acc: number, curr: any) => acc + curr?.price, 0).toFixed(2)
   const totalPriceWithDiscount = discountActive  ? (totalPrice - (totalPrice * discountActive)).toFixed(2) : totalPrice
 
   const validationSchema: any = yup.object().shape({
@@ -45,15 +47,20 @@ export function CartPage(){
   function handleOpenCouponDialog(){ setOpenCouponDialog(true) }
 
   const handleApplyCouponCode = ({couponCode}: any) => {
-    setDiscountActive(couponsDiscounts[couponCode])
-    setOpenCouponDialog(false)
+    if(couponCode !== 'AG3NZ1A' && comicsInCart?.some((comicItem)=> comicItem?.type === 'Especial')){
+      setCouponToast(true)
+    } else {
+      setDiscountActive(couponsDiscounts[couponCode])
+      setOpenCouponDialog(false)
+    }
+    
   }
 
   function handleClearCart(){ dispatch( clearCart() )}
 
   function handlePayment(){
     const newPaymentOrder = {
-      comics: coimicsInCart,
+      comics: comicsInCart,
       totalPrice: discountActive ? totalPriceWithDiscount : totalPrice,
       createdAt: new Date()
     }
@@ -75,7 +82,7 @@ export function CartPage(){
     <>
     <List>
       {
-        coimicsInCart?.map((comic: any) => (<CartListItem key={comic.id} comicItem={comic} />))
+        comicsInCart?.map((comic: any) => (<CartListItem key={comic.id} comicItem={comic} />))
       }
     </List>
 
@@ -116,6 +123,18 @@ export function CartPage(){
     </Button>
 
     <DialogCoupon openCouponDialog={openCouponDialog} setOpenCouponDialog={setOpenCouponDialog} formik={formik} />
+
+    <Snackbar
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      open={couponToast}
+      autoHideDuration={3000}
+      onClose={() => setCouponToast(false)}
+      message={'Remova o quadrinho especial para aplicar o cupom comum.'}
+    />
+
     
     </>
   )
