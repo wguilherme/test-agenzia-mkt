@@ -50,7 +50,6 @@ export function CartPage(){
       setDiscountActive(couponsDiscounts[couponCode])
       setOpenCouponDialog(false)
     }
-    
   }
 
   function handleClearCart(){ dispatch( clearCart() )}

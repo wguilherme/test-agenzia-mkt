@@ -1,9 +1,7 @@
-import { PurchaseListItem, FavoriteListItem } from "@/components";
-import { useComics } from "@/services";
-import { Alert, Box, Button, List, Paper, Typography } from "@mui/material";
-import { useSelector } from 'react-redux';
+import { PurchaseListItem } from "@/components";
+import { Alert, List } from "@mui/material";
 import { UserContext } from '@/contexts'
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 
 export function PurchasesPage(){

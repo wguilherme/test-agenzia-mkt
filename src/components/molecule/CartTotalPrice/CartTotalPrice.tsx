@@ -1,7 +1,7 @@
 import { Paper, Box, Typography } from "@mui/material";
 
 type Props = {
-  discountActive: number;
+  discountActive: any;
   totalPrice: string | number;
   totalPriceWithDiscount: string | number;
 }

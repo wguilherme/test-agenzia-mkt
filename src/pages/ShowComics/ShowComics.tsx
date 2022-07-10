@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
-import { ComicCard, ComicCardSkeleton, ShowComicTemplate } from '@/components';
+import { ComicCardSkeleton, ShowComicTemplate } from '@/components';
 import { useComics } from '@/services';
 import { Typography } from '@mui/material';
 
-export function ShowComicsPage(props:any){
+export function ShowComicsPage(){
 
   const { comicId } = useParams();
   const [comicDetails, setComicDetails] = useState<any>()  

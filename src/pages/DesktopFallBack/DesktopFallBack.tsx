@@ -1,6 +1,8 @@
 import { Box, Alert } from "@mui/material";
+
 export function DesktopFallBack(){
-  return (
+
+  return (    
     <Box sx={{
       display: 'flex',
       flexDirection: 'column',
@@ -11,9 +13,11 @@ export function DesktopFallBack(){
       backgroundColor: 'background.paper',
       color: 'text.primary'
     }}>
+
       <Alert severity="error">
         Acesse essa página no seu navegador mobile
       </Alert>
+
     </Box>
   )
 }
