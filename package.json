@@ -61,7 +61,6 @@
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^28.1.0",
     "jest-styled-components": "^7.0.8",
-    "miragejs": "^0.1.45",
     "sass": "^1.52.3",
     "ts-jest": "^28.0.4",
     "typescript": "^4.6.3",

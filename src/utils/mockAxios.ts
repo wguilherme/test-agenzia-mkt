@@ -45,7 +45,6 @@ const getMockResponse = (mockError:any) => {
 // Add a request interceptor
 axios.interceptors.request.use((config:any) => {
   if (mockingEnabled && isUrlMocked(config.url)) {
-    // console.log('axios mocking ' + config.url)
     return getMockError(config)
   }
   return config

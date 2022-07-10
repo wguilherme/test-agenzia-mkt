@@ -32,20 +32,5 @@ export function HeaderNavigationMobile({ title }: PropsInterface) {
         </Grid>
       </Toolbar >
     </AppBar >
-        //    <AppBar position="sticky" id="header-component"  >
-        //    <Toolbar variant="dense">
-        //      <Grid container alignItems="center">
-        //        <Grid item xs={2}>
-        //          <BackButton />
-        //        </Grid>
-        //        <Grid item xs>
-        //          <Typography variant="button" component="div" sx={{ flexGrow: 1 }} align="center">
-        //            {title || 'Coach Anywhere'}
-        //          </Typography>
-        //        </Grid>
-        //        <Grid item xs={2} />
-        //      </Grid>
-        //    </Toolbar>
-        //  </AppBar>
   );
 }

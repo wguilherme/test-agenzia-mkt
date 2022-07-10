@@ -12,7 +12,6 @@ import { UserProvider } from '@/contexts';
 import { store } from './store';
 import './styles/global.scss';
 import { QueryClient, QueryClientProvider } from 'react-query'
-// import { ReactQueryDevtools } from 'react-query/devtools'
 
 const theme: any = createTheme({
   palette: {
@@ -45,7 +44,6 @@ root.render(
           </Provider>
         </UserProvider>
       </ThemeProvider>
-        {/* <ReactQueryDevtools/> */}
     </QueryClientProvider>
   </React.StrictMode>,
 )

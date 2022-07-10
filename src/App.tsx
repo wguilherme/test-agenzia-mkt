@@ -9,8 +9,6 @@ import {CartPage, FavoritesPage, PurchasesPage, ListComicsPage, ShowComicsPage, 
 import { LayoutMobile } from "./components";
 import { isMobile } from "react-device-detect";
 
-console.log('isMobile', isMobile)
-
 function App() {
 
   return (
