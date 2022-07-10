@@ -9,23 +9,27 @@ import { useFormik } from 'formik';
 import { DialogCoupon } from "@/components";
 import * as yup from 'yup';
 
+const couponsDiscounts:any = { 'AG3NZ1A': 1, 'ANY22': 0.2, 'ANY55': 0.3}
+
 export function CartPage(){
   
   const [userPaid, setUserPaid] = useState(false)
   const [openCouponDialog, setOpenCouponDialog] = useState(false)
+  const [discountActive, setDiscountActive] = useState()
   
   const { userPurchases, setUserPurchases } = useContext(UserContext)
+
   const dispatch = useDispatch();
   const { cart } = useSelector((state: any) => state.cart)  
   const {data: comics, isLoading, error} = useComics()
 
   const coimicsInCart = comics?.filter((comic: any) => cart.includes(comic.id))
-  const totalPrice = coimicsInCart?.reduce((acc: number, curr: any) => acc + curr?.price, 0).toFixed(2)
+  const totalPrice: any = coimicsInCart?.reduce((acc: number, curr: any) => acc + curr?.price, 0).toFixed(2)
+  const totalPriceWithDiscount = discountActive  ? (totalPrice - (totalPrice * discountActive)).toFixed(2) : totalPrice
 
   const validationSchema: any = yup.object().shape({
     couponCode: yup.string().required('Informe o código do cupom').oneOf(['AG3NZ1A', 'ANY22', 'ANY55'], 'Código inválido'),
   });
-
 
   const formik: any = useFormik({
     enableReinitialize: true,
@@ -38,12 +42,12 @@ export function CartPage(){
     }
   })
 
-  console.log('formik', formik.values)
 
   function handleOpenCouponDialog(){ setOpenCouponDialog(true) }
 
-  const handleApplyCouponCode = (formData: any) => {
-    console.log('desconto aplicado!', formData)
+  const handleApplyCouponCode = ({couponCode}: any) => {
+    setDiscountActive(couponsDiscounts[couponCode])
+    setOpenCouponDialog(false)
   }
 
   function handleClearCart(){ dispatch( clearCart() )}
@@ -51,7 +55,7 @@ export function CartPage(){
   function handleCheckout(){
     const newPaymentOrder = {
       comics: coimicsInCart,
-      totalPrice,
+      totalPrice: discountActive ? totalPriceWithDiscount : totalPrice,
       createdAt: new Date()
     }
 
@@ -79,10 +83,22 @@ export function CartPage(){
     </List>
 
     <Paper>
-      <Box sx={{ p:3, display: 'flex', justifyContent: 'space-between'}}>
-        <Typography variant="h6">Total</Typography>
-        <Typography variant="h6">R$ {totalPrice}</Typography>
+      <Box sx={{ p:2}}>
+        <>
+          <Typography sx={{ textDecoration: discountActive ? 'line-through' : 'none' }} variant="body1">Total:</Typography>
+           <Typography sx={{ textDecoration: discountActive ? 'line-through' : 'none' }} variant="h6"> R$ {totalPrice}</Typography>
+           </>
+        {discountActive && (
+          <>
+          <Typography sx={{mt:2}} variant="body1">Cupom aplicado:</Typography>
+          <Typography variant="h6">Total com desconto:</Typography>
+           <Typography variant="h6"> R$ {totalPriceWithDiscount}</Typography>
+           </>
+        )}
+        
       </Box>
+ 
+   
     </Paper>
 
     <Button 
