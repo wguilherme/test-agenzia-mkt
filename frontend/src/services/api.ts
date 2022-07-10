@@ -4,19 +4,19 @@ import  {addMock, enableMocking} from '@/utils'
 
 addMock('http://localhost:4000/coupons', { data: [
   {
-  code: '2233',
+  code: 'AG3NZ1A',
   type: 'raro',
+  discount: 100
+  },
+  {
+  code: 'ANY22',
+  type: 'comum',
   discount: 10
   },
   {
-  code: '5530',
+  code: 'ANY55',
   type: 'comum',
-  discount: 30
-  },
-  {
-  code: '9988',
-  type: 'comum',
-  discount: 30
+  discount: 25
   }
 ]})
 

@@ -7,21 +7,24 @@ import { useContext, useState, useEffect } from "react";
 import { clearCart } from "@/features";
 import { useFormik } from 'formik';
 import { DialogCoupon } from "@/components";
+import * as yup from 'yup';
 
 export function CartPage(){
   
-  const { userPurchases, setUserPurchases } = useContext(UserContext)
   const [userPaid, setUserPaid] = useState(false)
   const [openCouponDialog, setOpenCouponDialog] = useState(false)
   
+  const { userPurchases, setUserPurchases } = useContext(UserContext)
   const dispatch = useDispatch();
-  const { cart } = useSelector((state: any) => state.cart)
+  const { cart } = useSelector((state: any) => state.cart)  
   const {data: comics, isLoading, error} = useComics()
 
   const coimicsInCart = comics?.filter((comic: any) => cart.includes(comic.id))
   const totalPrice = coimicsInCart?.reduce((acc: number, curr: any) => acc + curr?.price, 0).toFixed(2)
 
-
+  const validationSchema: any = yup.object().shape({
+    couponCode: yup.string().required('Informe o código do cupom').oneOf(['AG3NZ1A', 'ANY22', 'ANY55'], 'Código inválido'),
+  });
 
 
   const formik: any = useFormik({
@@ -29,12 +32,13 @@ export function CartPage(){
     initialValues: {
       couponCode: '',
     },
+    validationSchema,
     onSubmit: (formData: any) => {
       handleApplyCouponCode(formData)
     }
   })
 
-
+  console.log('formik', formik.values)
 
   function handleOpenCouponDialog(){ setOpenCouponDialog(true) }
 
