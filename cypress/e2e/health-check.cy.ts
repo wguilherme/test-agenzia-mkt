@@ -2,8 +2,9 @@
 
 describe('health check', () => {
 
-  it('render the main application page', () => {
+  it('should return error if device is desktop', () => {
     cy.visit('/')
+    cy.contains('Acesse essa página no seu navegador mobile')
   }) 
 
 })
