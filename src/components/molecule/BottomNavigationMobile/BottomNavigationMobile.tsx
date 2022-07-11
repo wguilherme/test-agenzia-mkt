@@ -34,7 +34,11 @@ export function BottomNavigationMobile() {
     <BottomNavigation
       showLabels
       value={activeMenuIdx}
-      onChange={(event, newValue:number) => {setActiveMenuIdx(newValue)}}
+      onChange={(event, newValue:number) => {
+        if(newValue === 0){
+          navigate('/comics')
+        }
+      }}
       >   
 
       <BottomNavigationAction label="Quadrinhos" icon={<Dashboard/>}/>
