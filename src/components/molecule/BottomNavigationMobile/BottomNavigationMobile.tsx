@@ -38,6 +38,7 @@ export function BottomNavigationMobile() {
         if(newValue === 0){
           navigate('/comics')
         }
+        setActiveMenuIdx(newValue)
       }}
       >   
 

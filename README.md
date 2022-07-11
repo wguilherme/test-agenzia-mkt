@@ -22,7 +22,7 @@ O projeto é uma aplicação de teste para a agência MKT. A aplicação consist
 
 No link abaixo está disponível o documento do desafio:
 
-- [Desafio Agência MKT - Marvel]('/desafio.pdf')
+- [Desafio Agência MKT - Marvel](/desafio.pdf)
 
 ## O que foi utilizado?
 
