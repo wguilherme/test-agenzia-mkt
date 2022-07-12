@@ -16,6 +16,7 @@ export const cartSlice = createSlice({
         const newCart:any = [...state.cart, id]
         state.cart = newCart
       }
+      return
     },
     removeComicFromCart: (state, actions) => {
       const id = actions.payload
